@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ===== SEO basics ===== -->
+  <title>HAZE Gaming | You Won't See Us Coming</title>
+  <meta name="description" content="HAZE Gaming is a Zimbabwean Fortnite clan and gaming community from Harare. Meet the squad, catch our next tournament and join the clan on Discord. You won't see us coming.">
+  <link rel="canonical" href="https://hazegaming.co.zw/">
+  <meta name="theme-color" content="#0A0A0A">
+
+  <!-- ===== Open Graph: link previews on WhatsApp, Discord, Facebook ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="HAZE Gaming">
+  <meta property="og:url" content="https://hazegaming.co.zw/">
+  <meta property="og:title" content="HAZE Gaming | You Won't See Us Coming">
+  <meta property="og:description" content="A Zimbabwean Fortnite clan from Harare. Join the clan on Discord.">
+  <meta property="og:image" content="https://hazegaming.co.zw/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="HAZE logo with the tagline You Won't See Us Coming, on mint green smoke">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HAZE Gaming | You Won't See Us Coming">
+  <meta name="twitter:description" content="A Zimbabwean Fortnite clan from Harare.">
+  <meta name="twitter:image" content="https://hazegaming.co.zw/images/og-image.png">
+
+  <!-- ===== Favicons (black H on mint) ===== -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- ===== Font: Archivo (heavy italic headings + clean body text) ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Load the hero images early so the logo appears fast -->
+  <link rel="preload" as="image" href="images/wordmark.png">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Tells the CSS that JavaScript is on (enables fade-in animations).
+       Safety net: if any script errors, drop it so nothing stays hidden. -->
+  <script>
+    document.documentElement.classList.add("js");
+    window.addEventListener("error", function () { document.documentElement.classList.remove("js"); });
+  </script>
+
+  <!-- Structured data so search engines understand who we are -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "HAZE Gaming",
+    "slogan": "You Won't See Us Coming",
+    "url": "https://hazegaming.co.zw/",
+    "logo": "https://hazegaming.co.zw/images/icon-512.png",
+    "description": "Zimbabwean Fortnite clan and online gaming community.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Harare", "addressCountry": "ZW" },
+    "sameAs": ["https://discord.gg/KtDGEysHZ7"]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Page-wide drifting mist (pure CSS, sits behind everything) -->
+  <div class="fog" aria-hidden="true">
+    <div class="fog__layer fog__layer--1"></div>
+    <div class="fog__layer fog__layer--2"></div>
+    <div class="fog__layer fog__layer--3"></div>
+  </div>
+
+  <!-- ======================= HEADER / NAV ======================= -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#home" class="brand" aria-label="HAZE Gaming home">
+        <img src="images/wordmark.png" alt="HAZE" width="504" height="114">
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="#about">About</a>
+        <a href="#members">Squad</a>
+        <a href="#naming">Names</a>
+        <a href="#events">Events</a>
+        <a href="#join">Join</a>
+        <!-- Discord links: the real link is here AND in data/config.json -->
+        <a href="https://discord.gg/KtDGEysHZ7" class="btn btn--small btn--primary" data-discord target="_blank" rel="noopener">Discord</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ======================= 1. HERO ======================= -->
+    <section class="hero" id="home">
+      <!-- Animated mint smoke is drawn on this canvas by js/main.js -->
+      <canvas class="hero__smoke" id="smoke" aria-hidden="true"></canvas>
+      <!-- Giant outlined H fading in the background (from our poster art) -->
+      <img class="hero__ghost" src="images/h-outline.webp" alt="" aria-hidden="true" width="800" height="667">
+
+      <div class="container hero__content">
+        <p class="label hero__kicker">Zimbabwe · Fortnite Clan</p>
+
+        <h1 class="hero__title">
+          <img class="hero__wordmark" src="images/wordmark.png" alt="HAZE" width="504" height="114">
+          <span class="sr-only"> Gaming</span>
+        </h1>
+
+        <p class="tagline hero__tagline">You won't see us coming</p>
+
+        <div class="hero__actions">
+          <a href="https://discord.gg/KtDGEysHZ7" class="btn btn--primary btn--large" data-discord target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-discord"/></svg>
+            Join the Clan
+          </a>
+          <a href="#members" class="btn btn--ghost btn--large">Meet the Squad</a>
+        </div>
+      </div>
+
+      <a href="#about" class="hero__scroll" aria-label="Scroll to About"><span></span></a>
+    </section>
+
+    <!-- ======================= 2. ABOUT ======================= -->
+    <section class="section" id="about">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="label eyebrow">01 · About</p>
+          <h2>Who we are</h2>
+        </header>
+
+        <div class="about">
+          <div class="about__text reveal">
+            <p class="lead">
+              HAZE is an online gaming clan and community from Zimbabwe. We're a crew of
+              players from Harare and beyond who squad up, compete and grow together.
+            </p>
+            <p>
+              Whether you're grinding ranked or just want people to run games with after work,
+              there's a seat for you here, as long as you bring the right energy.
+            </p>
+
+            <h3 class="label about__games-title">What we play</h3>
+            <!-- Filled from the "games" list in data/config.json -->
+            <ul class="chips" id="gamesList"><li>Fortnite</li></ul>
+          </div>
+
+          <ul class="values">
+            <li class="card value reveal">
+              <svg class="value__icon" aria-hidden="true"><use href="#i-team"/></svg>
+              <h3>Teamwork</h3>
+              <p>Comms on, ego off. We win and lose as a squad and we've always got each other's backs.</p>
+            </li>
+            <li class="card value reveal">
+              <svg class="value__icon" aria-hidden="true"><use href="#i-target"/></svg>
+              <h3>Skill</h3>
+              <p>We put in the reps, review our plays and push each other to rank up every season.</p>
+            </li>
+            <li class="card value reveal">
+              <svg class="value__icon" aria-hidden="true"><use href="#i-heart"/></svg>
+              <h3>Community</h3>
+              <p>More than a clan. It's a home for Zimbabwean gamers to link up, chill and support each other.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="mist" aria-hidden="true"></div>
+
+    <!-- ======================= 3. MEMBERS ======================= -->
+    <section class="section" id="members">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="label eyebrow">02 · Squad</p>
+          <h2>The squad</h2>
+          <p class="section__sub"><span id="memberCount">Our</span> players carrying the HAZE tag.</p>
+        </header>
+
+        <!-- Member cards are built from data/members.json -->
+        <div class="members" id="membersGrid"></div>
+        <noscript><p class="empty">Turn on JavaScript to see the squad.</p></noscript>
+      </div>
+    </section>
+
+    <!-- ======================= 4. NAMING CONVENTION ======================= -->
+    <section class="section" id="naming">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="label eyebrow">03 · Names</p>
+          <h2>Wear the tag</h2>
+        </header>
+
+        <div class="naming">
+          <div class="naming__rules reveal">
+            <div class="rule">
+              <span class="rule__num">01</span>
+              <div>
+                <h3>Carry the HAZE tag</h3>
+                <p>Every member puts <strong class="tag">HAZE</strong> in front of their name, in game and on Discord. When you see it, you know who you're rolling with.</p>
+              </div>
+            </div>
+            <div class="rule">
+              <span class="rule__num">02</span>
+              <div>
+                <h3>Swap a vowel for an <span class="x">x</span></h3>
+                <p>Our signature style: take your name and trade a vowel for an <strong class="x">x</strong>. Sometimes the other vowels vanish into the haze too.</p>
+              </div>
+            </div>
+
+            <ul class="examples" aria-label="Name examples">
+              <li><span class="examples__from">Raven</span><span class="examples__to">HAZE R<b>x</b>ven</span></li>
+              <li><span class="examples__from">Viper</span><span class="examples__to">HAZE V<b>x</b>pr</span></li>
+              <li><span class="examples__from">Falcon</span><span class="examples__to">HAZE F<b>x</b>lcon</span></li>
+              <li><span class="examples__from">Sage</span><span class="examples__to">HAZE S<b>x</b>ge</span></li>
+            </ul>
+          </div>
+
+          <!-- Name generator (logic in js/main.js) -->
+          <form class="card forge reveal" id="nameForge" autocomplete="off">
+            <h3>Name forge</h3>
+            <p>Type a name to see it with the HAZE treatment.</p>
+            <label class="sr-only" for="forgeInput">Your name or gamer tag</label>
+            <input class="forge__input" id="forgeInput" type="text" maxlength="16" placeholder="e.g. Shadow" spellcheck="false">
+            <ul class="forge__results" id="forgeResults" aria-live="polite"></ul>
+            <p class="forge__note">Final names are approved in Discord once you're accepted, so make sure nobody else has yours.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <div class="mist" aria-hidden="true"></div>
+
+    <!-- ======================= 5. EVENTS ======================= -->
+    <section class="section" id="events">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="label eyebrow">04 · Events</p>
+          <h2>Events &amp; tournaments</h2>
+        </header>
+
+        <!-- Event cards are built from data/events.json -->
+        <div class="events" id="eventsList"></div>
+        <noscript><p class="empty">Turn on JavaScript to see upcoming events.</p></noscript>
+      </div>
+    </section>
+
+    <!-- ======================= 6. HOW TO JOIN ======================= -->
+    <section class="section" id="join">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="label eyebrow">05 · Join</p>
+          <h2>How to join</h2>
+        </header>
+
+        <ol class="steps">
+          <li class="card step reveal">
+            <span class="step__num">01</span>
+            <h3>Join the Discord</h3>
+            <p>Hop into our server. That's where everything happens: squads, scrims, events and banter.</p>
+            <a href="https://discord.gg/KtDGEysHZ7" class="btn btn--small btn--ghost" data-discord target="_blank" rel="noopener">Open Discord</a>
+          </li>
+          <li class="card step reveal">
+            <span class="step__num">02</span>
+            <h3>Post in #applications</h3>
+            <p>Make a post in the <strong>#applications</strong> forum channel. Tell us your gamer tag, your rank and a bit about yourself.</p>
+          </li>
+          <li class="card step reveal">
+            <span class="step__num">03</span>
+            <h3>Get the Member role</h3>
+            <p>The leaders review your application. Once you're accepted, you get the <strong>Member</strong> role and full access to the clan.</p>
+          </li>
+          <li class="card step reveal">
+            <span class="step__num">04</span>
+            <h3>Pick your HAZE name</h3>
+            <p>Choose your name with the HAZE tag and the vowel swap. Try the <a href="#naming">name forge</a> for ideas.</p>
+          </li>
+        </ol>
+
+        <div class="cta reveal">
+          <img class="cta__ghost" src="images/logo-h.png" alt="" aria-hidden="true" width="642" height="495" loading="lazy">
+          <p class="tagline">You won't see us coming</p>
+          <h3>Step into the haze</h3>
+          <a href="https://discord.gg/KtDGEysHZ7" class="btn btn--primary btn--large" data-discord target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-discord"/></svg>
+            Join the Clan
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================= 7. FOOTER ======================= -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="#home" class="footer__brand" aria-label="Back to top">
+        <img src="images/logo-h.png" alt="" width="642" height="495">
+        <span class="tagline">You won't see us coming</span>
+      </a>
+
+      <!-- Discord + social icons come from data/config.json -->
+      <ul class="socials" id="socials" aria-label="Social links">
+        <li><a href="https://discord.gg/KtDGEysHZ7" target="_blank" rel="noopener" aria-label="HAZE Gaming on Discord"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-discord"/></svg></a></li>
+      </ul>
+
+      <!-- Change the year here when needed -->
+      <p class="footer__copy">© 2026 HAZE Gaming · Harare, Zimbabwe</p>
+    </div>
+  </footer>
+
+  <!-- ===== Icon sprite (reused with <use href="#i-name">) ===== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-discord" viewBox="0 0 24 24"><path fill="currentColor" d="M20.32 4.37A19.8 19.8 0 0 0 15.4 2.8a13.7 13.7 0 0 0-.63 1.3 18.4 18.4 0 0 0-5.53 0 12.6 12.6 0 0 0-.64-1.3 19.7 19.7 0 0 0-4.93 1.54C.54 9.04-.32 13.58.1 18.06a19.9 19.9 0 0 0 6.04 3.05c.49-.66.92-1.37 1.3-2.1a12.9 12.9 0 0 1-2.04-.98l.5-.39a14.2 14.2 0 0 0 12.2 0l.5.39c-.65.39-1.33.71-2.05.98.38.73.81 1.44 1.3 2.1a19.8 19.8 0 0 0 6.04-3.05c.5-5.18-.84-9.68-3.57-13.69ZM8.02 15.33c-1.18 0-2.16-1.09-2.16-2.42s.95-2.42 2.16-2.42 2.18 1.09 2.16 2.42c0 1.33-.95 2.42-2.16 2.42Zm7.97 0c-1.18 0-2.16-1.09-2.16-2.42s.95-2.42 2.16-2.42 2.18 1.09 2.16 2.42c0 1.33-.95 2.42-2.16 2.42Z"/></symbol>
+    <symbol id="i-team" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.6-3.4 3-5.4 6-5.4s5.4 2 6 5.4"/><circle cx="17" cy="9" r="2.6"/><path d="M16.5 14.2c2.4.2 4 1.9 4.5 4.8"/></g></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/><path d="M12 1.5v4M12 18.5v4M1.5 12h4M18.5 12h4"/></g></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 20.5s-8-4.8-8-10.6A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 8 2.9c0 5.8-8 10.6-8 10.6Z"/></symbol>
+    <symbol id="i-controller" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 7h11a4.5 4.5 0 0 1 4.4 5.4l-.9 4.4a2.6 2.6 0 0 1-4.5 1.2L14.6 16H9.4l-1.9 2a2.6 2.6 0 0 1-4.5-1.2l-.9-4.4A4.5 4.5 0 0 1 6.5 7Z"/><path d="M7.5 10.5v3M6 12h3"/><circle cx="16" cy="11" r=".6" fill="currentColor"/><circle cx="17.5" cy="13" r=".6" fill="currentColor"/></g></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  </svg>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lost in the haze | HAZE Gaming</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    /* Page-specific styles for the "not found" page */
+    .lost { min-height: 100vh; min-height: 100svh; display: grid; place-items: center; text-align: center; padding: 24px 16px; position: relative; overflow: hidden; isolation: isolate; }
+    .lost__ghost { position: absolute; z-index: -1; width: min(90vw, 620px); height: auto; left: 50%; top: 50%; transform: translate(-50%, -50%); opacity: .3; }
+    .lost .tagline { font-size: .72rem; margin-bottom: 1.2rem; padding-left: .28em; }
+    .lost h1 { font-size: clamp(2.6rem, 11vw, 5rem); }
+    .lost p:not(.tagline) { color: var(--muted); margin: 0 auto 28px; max-width: 34ch; }
+  </style>
+</head>
+<body>
+  <div class="fog" aria-hidden="true">
+    <div class="fog__layer fog__layer--1"></div>
+    <div class="fog__layer fog__layer--2"></div>
+  </div>
+  <main class="lost">
+    <img class="lost__ghost" src="/images/h-outline.webp" alt="" width="800" height="667">
+    <div>
+      <p class="tagline">Error 404</p>
+      <h1>Lost in the haze</h1>
+      <p>This page vanished. You didn't see that coming.</p>
+      <a class="btn btn--primary btn--large" href="/">Back to base</a>
+    </div>
+  </main>
+</body>
+</html>

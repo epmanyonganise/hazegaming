@@ -1,0 +1,30 @@
+{
+  "_help": "EVENTS & TOURNAMENTS. Copy one { ... } block to add an event, with a comma between blocks (not after the last). date must be YYYY-MM-DD. time is optional free text. link is optional (empty = Discord invite). Events are sorted by date and hidden automatically once the date has passed. The events below are SAMPLES: replace them with real ones.",
+
+  "events": [
+    {
+      "title": "HAZE Winter Clash",
+      "date": "2026-12-05",
+      "time": "18:00 CAT",
+      "game": "Fortnite",
+      "description": "Duos Zero Build cash-cup style: five matches, points for placements and eliminations. Sign up with your duo in #events.",
+      "link": ""
+    },
+    {
+      "title": "Box Fight Showdown",
+      "date": "2026-12-19",
+      "time": "19:00 CAT",
+      "game": "Fortnite",
+      "description": "1v1 box fights in a creative map, single elimination. Build fast, edit faster, and claim the bracket.",
+      "link": ""
+    },
+    {
+      "title": "New Year Squads Cup",
+      "date": "2027-01-09",
+      "time": "15:00 CAT",
+      "game": "Fortnite",
+      "description": "Squads Battle Royale to kick off the year. Bring a friend who wants to join the clan.",
+      "link": ""
+    }
+  ]
+}

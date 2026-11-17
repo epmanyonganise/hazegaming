@@ -1,0 +1,14 @@
+{
+  "_help": "SITE SETTINGS. Edit the values in quotes, keep the commas and brackets. Socials: leave a url empty (\"\") to hide that icon. Supported names: Discord, TikTok, YouTube, Instagram, X, Facebook, WhatsApp, Twitch.",
+
+  "discordInvite": "https://discord.gg/KtDGEysHZ7",
+
+  "games": ["Fortnite"],
+
+  "socials": [
+    { "name": "TikTok", "url": "" },
+    { "name": "YouTube", "url": "" },
+    { "name": "Instagram", "url": "" },
+    { "name": "WhatsApp", "url": "" }
+  ]
+}

@@ -1,0 +1,451 @@
+/* ==========================================================================
+   HAZE Gaming — STYLES
+   --------------------------------------------------------------------------
+   Brand palette (use ONLY these):
+     Haze Mint   #5EF5C8   primary accent
+     Void Black  #0A0A0A   background
+     Off-white   #F2FFFB   headings / text
+     Smoke Teal  #2E8F74   glows, gradients, borders
+
+   Contents
+     1. Design tokens
+     2. Base / reset
+     3. Utilities (container, labels, buttons, cards, reveal)
+     4. Background mist
+     5. Header & navigation
+     6. Hero
+     7. Sections (shared) + mist dividers
+     8. About
+     9. Members
+    10. Naming convention + name forge
+    11. Events
+    12. How to join + call to action
+    13. Footer
+    14. Reduced motion
+   ========================================================================== */
+
+
+/* 1. DESIGN TOKENS ========================================================= */
+:root {
+  /* Brand colours */
+  --mint: #5EF5C8;
+  --black: #0A0A0A;
+  --white: #F2FFFB;
+  --teal: #2E8F74;
+  --mint-rgb: 94, 245, 200;    /* mint as R,G,B for see-through glows */
+  --teal-rgb: 46, 143, 116;
+  --white-rgb: 242, 255, 251;
+
+  /* Derived (still only brand colours, just at different strengths) */
+  --card: #111111;
+  --card-2: #151515;
+  --muted: rgba(var(--white-rgb), .64);
+  --line: rgba(var(--mint-rgb), .14);       /* thin mint borders */
+  --line-strong: rgba(var(--mint-rgb), .5);
+  --glow: 0 0 28px rgba(var(--mint-rgb), .28), 0 0 2px rgba(var(--mint-rgb), .6);
+
+  /* Type */
+  --font: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Shape & motion */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --header-h: 68px;
+}
+
+
+/* 2. BASE / RESET ========================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+  -webkit-text-size-adjust: 100%;
+  background: var(--black);
+}
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Headings: heavy, italic, slanted, uppercase, like the HAZE wordmark */
+h1, h2, h3 {
+  font-family: var(--font);
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 1.05;
+  letter-spacing: -.005em;
+  margin: 0 0 .5em;
+}
+h2 { font-size: clamp(2.1rem, 8vw, 3.6rem); }
+h3 { font-size: 1.1rem; font-weight: 800; letter-spacing: .01em; }
+p  { margin: 0 0 1em; }
+a  { color: var(--mint); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; display: block; }
+ul, ol { list-style: none; margin: 0; padding: 0; }
+strong { color: var(--white); }
+
+:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; border-radius: 4px; }
+::selection { background: var(--mint); color: var(--black); }
+
+
+/* 3. UTILITIES ============================================================= */
+.container { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 768px) { .container { padding: 0 32px; } }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link { position: absolute; left: 16px; top: -48px; z-index: 100; background: var(--mint); color: var(--black); font-weight: 700; padding: 8px 14px; border-radius: var(--radius-sm); }
+.skip-link:focus { top: 12px; }
+
+.icon { width: 1.25em; height: 1.25em; flex-shrink: 0; }
+
+/* Small labels: uppercase with wide letter-spacing, like the tagline */
+.label, .tagline {
+  font-family: var(--font); font-weight: 700; font-style: normal;
+  text-transform: uppercase; letter-spacing: .28em;
+}
+.tagline { color: var(--mint); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .6em;
+  font-family: var(--font); font-weight: 800; font-size: .82rem;
+  letter-spacing: .16em; text-transform: uppercase;
+  padding: .9em 1.6em; border-radius: var(--radius-sm); border: 1.5px solid var(--mint);
+  cursor: pointer; text-decoration: none !important;
+  transition: transform .25s var(--ease), box-shadow .3s var(--ease), background .25s, color .25s;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(var(--mint-rgb), .45), 0 0 6px rgba(var(--mint-rgb), .6); }
+.btn--primary { background: var(--mint); color: var(--black); }
+.btn--ghost { background: rgba(10, 10, 10, .4); color: var(--mint); }
+.btn--ghost:hover { background: rgba(var(--mint-rgb), .08); }
+.btn--small { font-size: .7rem; padding: .75em 1.25em; }
+.btn--large { font-size: .85rem; padding: 1.05em 2em; }
+
+/* Cards: dark, thin mint border at low opacity, glow on hover */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: transform .35s var(--ease), border-color .35s, box-shadow .35s;
+}
+.card:hover { border-color: var(--line-strong); box-shadow: 0 0 36px -6px rgba(var(--mint-rgb), .25); }
+
+/* Elements fade in "out of the mist" when scrolled into view (JS adds .is-visible) */
+.js .reveal { opacity: 0; transform: translateY(26px); filter: blur(10px); transition: opacity 1s var(--ease), transform 1s var(--ease), filter 1.1s var(--ease); }
+.js .reveal.is-visible { opacity: 1; transform: none; filter: none; }
+
+
+/* 4. BACKGROUND MIST ======================================================= */
+/* Huge soft teal gradients drifting slowly behind the whole page.
+   Only `transform` is animated, so it stays smooth on phones. */
+.fog { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.fog__layer { position: absolute; border-radius: 50%; will-change: transform; }
+.fog__layer--1 {
+  width: 140vmax; height: 140vmax; top: -70vmax; left: -60vmax;
+  background: radial-gradient(closest-side, rgba(var(--teal-rgb), .22), transparent 70%);
+  animation: drift-1 40s ease-in-out infinite alternate;
+}
+.fog__layer--2 {
+  width: 130vmax; height: 130vmax; bottom: -75vmax; right: -60vmax;
+  background: radial-gradient(closest-side, rgba(var(--teal-rgb), .18), transparent 70%);
+  animation: drift-2 52s ease-in-out infinite alternate;
+}
+.fog__layer--3 {
+  width: 80vmax; height: 80vmax; top: 30vh; left: 20vw;
+  background: radial-gradient(closest-side, rgba(var(--mint-rgb), .04), transparent 70%);
+  animation: drift-3 64s ease-in-out infinite alternate;
+}
+@keyframes drift-1 { to { transform: translate(30vw, 30vh) scale(1.15); } }
+@keyframes drift-2 { to { transform: translate(-25vw, -30vh) scale(1.1); } }
+@keyframes drift-3 { to { transform: translate(-25vw, 10vh) scale(1.3); } }
+
+
+/* 5. HEADER & NAVIGATION =================================================== */
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50; height: var(--header-h);
+  border-bottom: 1px solid transparent;
+  transition: background .3s, border-color .3s;
+}
+.header.is-scrolled { background: rgba(10, 10, 10, .82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--line); }
+.header__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+
+.brand { display: block; position: relative; z-index: 60; }
+.brand img { height: 26px; width: auto; }
+
+.nav { display: flex; align-items: center; gap: 1.9rem; }
+.nav a:not(.btn) {
+  color: var(--muted); font-size: .72rem; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
+  position: relative; text-decoration: none; transition: color .2s;
+}
+.nav a:not(.btn)::after { content: ""; position: absolute; left: 0; right: .24em; bottom: -7px; height: 2px; background: var(--mint); box-shadow: 0 0 10px var(--mint); transform: scaleX(0); transition: transform .3s var(--ease); }
+.nav a:not(.btn):hover, .nav a.is-active { color: var(--white); }
+.nav a:not(.btn):hover::after, .nav a.is-active::after { transform: scaleX(1); }
+
+/* Hamburger (mobile) */
+.nav-toggle { display: none; width: 44px; height: 44px; background: none; border: 0; cursor: pointer; padding: 10px; position: relative; z-index: 60; }
+.nav-toggle span { display: block; height: 2px; background: var(--mint); margin: 5px 0; border-radius: 2px; transition: transform .3s var(--ease), opacity .2s; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 820px) {
+  .nav-toggle { display: block; }
+  .nav {
+    position: fixed; inset: 0; flex-direction: column; justify-content: center; gap: 1.9rem;
+    background: rgba(10, 10, 10, .97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;
+  }
+  .nav.is-open { opacity: 1; visibility: visible; }
+  .nav a:not(.btn) { font-size: 1.6rem; font-weight: 900; font-style: italic; letter-spacing: .02em; color: var(--white); }
+  .nav .btn { font-size: .85rem; padding: 1em 2.2em; }
+  body.nav-open { overflow: hidden; }
+}
+
+
+/* 6. HERO ================================================================== */
+.hero {
+  position: relative; min-height: 100vh; min-height: 100svh;
+  display: grid; place-items: center; text-align: center;
+  padding: calc(var(--header-h) + 24px) 0 96px; overflow: hidden; isolation: isolate;
+  background: var(--black);
+}
+.hero__smoke { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; }
+
+/* Giant outlined H fading into the background, like the banner */
+.hero__ghost {
+  position: absolute; z-index: -1; pointer-events: none;
+  height: 115%; width: auto; max-width: none;
+  right: -18%; top: 50%; transform: translateY(-50%);
+  opacity: .4;
+  -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 40%, transparent 100%);
+          mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 40%, transparent 100%);
+  animation: ghost-drift 18s ease-in-out infinite alternate;
+}
+@media (max-width: 700px) { .hero__ghost { height: 80%; right: -45%; opacity: .26; } }
+@keyframes ghost-drift { from { transform: translate(0, -50%); } to { transform: translate(-3%, -53%); } }
+
+/* Vignette + fade into the page at the bottom */
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 35%, rgba(10,10,10,.8) 100%),
+    linear-gradient(to bottom, transparent 70%, var(--black));
+}
+
+.hero__content { display: flex; flex-direction: column; align-items: center; }
+.hero__kicker { font-size: .68rem; color: var(--muted); margin-bottom: 1.6rem; opacity: 0; animation: fade-up 1s .2s var(--ease) forwards; }
+.hero__title { margin: 0; }
+/* The official wordmark condenses out of the smoke */
+.hero__wordmark {
+  width: min(84vw, 560px); height: auto;
+  filter: drop-shadow(0 0 30px rgba(var(--mint-rgb), .22));
+  opacity: 0; animation: condense 1.8s .3s var(--ease) forwards;
+}
+.hero__tagline { font-size: clamp(.72rem, 2.9vw, 1rem); margin: 1.6rem 0 2.6rem; padding-left: .28em; text-shadow: 0 0 18px rgba(var(--mint-rgb), .5); opacity: 0; animation: fade-up 1.2s 1.4s var(--ease) forwards; }
+.hero__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; opacity: 0; animation: fade-up 1s 1.8s var(--ease) forwards; }
+@media (max-width: 480px) { .hero__actions { width: 100%; } .hero__actions .btn { width: 100%; } }
+
+.hero__scroll { position: absolute; bottom: 28px; left: 50%; margin-left: -13px; width: 26px; height: 42px; border: 1.5px solid rgba(var(--mint-rgb), .4); border-radius: 14px; }
+.hero__scroll span { position: absolute; top: 8px; left: 50%; width: 3px; height: 8px; margin-left: -1.5px; border-radius: 2px; background: var(--mint); animation: scroll-dot 1.8s ease-in-out infinite; }
+
+@keyframes condense {
+  0%   { opacity: 0; filter: blur(22px) drop-shadow(0 0 30px rgba(var(--mint-rgb), 0)); transform: scale(1.08); }
+  100% { opacity: 1; filter: blur(0) drop-shadow(0 0 30px rgba(var(--mint-rgb), .22)); transform: none; }
+}
+@keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes scroll-dot { 0% { opacity: 0; transform: translateY(0); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(14px); } }
+
+
+/* 7. SECTIONS (shared) + MIST DIVIDERS ===================================== */
+.section { padding: clamp(72px, 12vw, 128px) 0; position: relative; }
+.section__head { margin-bottom: clamp(32px, 6vw, 56px); }
+.section__sub { color: var(--muted); margin: 0; }
+.eyebrow { font-size: .7rem; color: var(--mint); margin-bottom: .9rem; }
+.lead { font-size: 1.15rem; color: var(--white); }
+.empty { color: var(--muted); padding: 32px; text-align: center; border: 1px dashed var(--line); border-radius: var(--radius); grid-column: 1 / -1; }
+
+/* A band of drifting smoke between sections */
+.mist { position: relative; height: 160px; margin: -80px 0; pointer-events: none; overflow: hidden; z-index: -1; }
+.mist::before, .mist::after {
+  content: ""; position: absolute; inset: 0 -30%;
+  background:
+    radial-gradient(ellipse 30% 50% at 25% 50%, rgba(var(--teal-rgb), .28), transparent 70%),
+    radial-gradient(ellipse 25% 40% at 70% 55%, rgba(var(--teal-rgb), .22), transparent 70%),
+    radial-gradient(ellipse 20% 35% at 50% 45%, rgba(var(--mint-rgb), .06), transparent 70%);
+  animation: mist-roll 30s ease-in-out infinite alternate;
+}
+.mist::after { opacity: .6; animation-duration: 42s; animation-direction: alternate-reverse; }
+@keyframes mist-roll { from { transform: translateX(-8%); } to { transform: translateX(8%); } }
+
+
+/* 8. ABOUT ================================================================= */
+.about { display: grid; gap: 40px; }
+@media (min-width: 900px) { .about { grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: start; } }
+.about__text p:not(.lead) { color: var(--muted); }
+.about__games-title { margin-top: 2rem; font-size: .7rem; color: var(--muted); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chips li { display: inline-flex; align-items: center; gap: .55em; padding: .55em 1.1em; font-size: .85rem; font-weight: 800; font-style: italic; text-transform: uppercase; letter-spacing: .04em; border-radius: var(--radius-sm); background: rgba(var(--mint-rgb), .06); border: 1px solid rgba(var(--mint-rgb), .35); color: var(--mint); }
+.chips li svg { width: 1.2em; height: 1.2em; }
+
+.values { display: grid; gap: 16px; }
+.value { padding: 22px 22px 18px; }
+.value:hover { transform: translateX(6px); }
+.value__icon { width: 30px; height: 30px; color: var(--mint); margin-bottom: 12px; }
+.value p { color: var(--muted); margin: 0; font-size: .95rem; }
+
+
+/* 9. MEMBERS =============================================================== */
+.members { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (min-width: 640px) { .members { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; } }
+
+.member { position: relative; padding: 26px 14px 22px; text-align: center; overflow: hidden; }
+/* soft mint light that follows the pointer (position set in JS) */
+.member::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .35s;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 0%), rgba(var(--mint-rgb), .12), transparent 60%);
+}
+.member:hover { transform: translateY(-6px); }
+.member:hover::before { opacity: 1; }
+
+/* Leaders: brighter border + permanent glow */
+.member--lead { border-color: rgba(var(--mint-rgb), .55); box-shadow: 0 0 32px -10px rgba(var(--mint-rgb), .45); }
+
+.member__avatar {
+  width: 80px; height: 80px; margin: 0 auto 16px; border-radius: 50%;
+  display: grid; place-items: center; overflow: hidden;
+  font-weight: 900; font-style: italic; font-size: 2rem; color: var(--mint);
+  background: radial-gradient(circle at 35% 30%, rgba(var(--teal-rgb), .55), var(--black) 75%);
+  border: 1.5px solid rgba(var(--mint-rgb), .45);
+  box-shadow: 0 0 22px rgba(var(--mint-rgb), .15);
+}
+.member--lead .member__avatar { border-color: var(--mint); box-shadow: 0 0 26px rgba(var(--mint-rgb), .4); }
+.member__avatar img { width: 100%; height: 100%; object-fit: cover; }
+.member__tag { display: block; font-size: .62rem; font-weight: 700; letter-spacing: .34em; color: var(--mint); padding-left: .34em; }
+/* Gamer tags keep their real case so the signature lowercase x stays visible */
+.member__name { font-size: clamp(1.05rem, 4vw, 1.4rem); margin: .2em 0 .6em; word-break: break-word; text-transform: none; }
+.member__role { display: inline-block; font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; padding: .45em .9em .45em 1.1em; border-radius: 4px; border: 1px solid rgba(var(--mint-rgb), .3); color: var(--mint); }
+.member--lead .member__role { background: var(--mint); color: var(--black); border-color: var(--mint); }
+.member__game { margin: 12px 0 0; font-size: .8rem; line-height: 1.4; color: var(--muted); }
+.member__game svg { width: 1.1em; height: 1.1em; vertical-align: -.2em; margin-right: .35em; color: var(--teal); }
+
+
+/* 10. NAMING CONVENTION ==================================================== */
+.naming { display: grid; gap: 32px; }
+@media (min-width: 900px) { .naming { grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: start; } }
+
+.rule { display: flex; gap: 18px; margin-bottom: 28px; }
+.rule__num { font-weight: 900; font-style: italic; font-size: 2rem; line-height: 1; color: transparent; -webkit-text-stroke: 1px var(--mint); min-width: 2.2ch; }
+.rule p { color: var(--muted); margin: 0; }
+.tag { color: var(--mint); font-weight: 900; font-style: italic; }
+.x { color: var(--mint); text-transform: none; }
+
+.examples { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 8px; }
+.examples li { padding: 14px 16px; border-radius: var(--radius-sm); background: var(--card); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; transition: border-color .3s, transform .3s var(--ease), box-shadow .3s; }
+.examples li:hover { border-color: var(--line-strong); transform: translateY(-3px); box-shadow: 0 0 24px -6px rgba(var(--mint-rgb), .3); }
+.examples__from { font-size: .78rem; color: var(--muted); text-decoration: line-through; text-decoration-color: var(--teal); }
+.examples__to { font-weight: 900; font-style: italic; font-size: 1.1rem; }
+.examples__to b, .forge__results b { color: var(--mint); text-shadow: 0 0 12px rgba(var(--mint-rgb), .8); }
+
+/* Name forge */
+.forge { padding: 26px 22px; box-shadow: 0 0 60px -30px rgba(var(--mint-rgb), .5); }
+.forge > p { color: var(--muted); font-size: .95rem; }
+.forge__input {
+  width: 100%; padding: 14px 16px; border-radius: var(--radius-sm);
+  font: 700 1.05rem var(--font); color: var(--white);
+  background: var(--black); border: 1px solid rgba(var(--mint-rgb), .25);
+  transition: border-color .2s, box-shadow .2s;
+}
+.forge__input:focus { outline: none; border-color: var(--mint); box-shadow: 0 0 0 3px rgba(var(--mint-rgb), .18), 0 0 24px rgba(var(--mint-rgb), .2); }
+.forge__input::placeholder { color: rgba(var(--white-rgb), .35); }
+.forge__results { display: grid; gap: 8px; margin: 16px 0; min-height: 48px; }
+.forge__results li { font-weight: 900; font-style: italic; font-size: 1.1rem; padding: 10px 14px; border-radius: var(--radius-sm); background: rgba(var(--mint-rgb), .05); border: 1px solid rgba(var(--mint-rgb), .22); animation: fade-up .4s var(--ease); }
+.forge__results li .tag { margin-right: .4em; }
+.forge__results .forge__hint { font-weight: 400; font-style: normal; text-transform: none; color: var(--muted); background: none; border-style: dashed; }
+.forge__note { font-size: .8rem; color: var(--muted); margin: 0; }
+
+
+/* 11. EVENTS =============================================================== */
+.events { display: grid; gap: 18px; }
+@media (min-width: 760px) { .events { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); } }
+
+.event { display: flex; gap: 18px; padding: 20px; }
+.event:hover { transform: translateY(-4px); }
+.event__date {
+  flex-shrink: 0; width: 68px; height: 78px; border-radius: var(--radius-sm);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border: 1px solid rgba(var(--mint-rgb), .45);
+  background: linear-gradient(170deg, rgba(var(--teal-rgb), .35), rgba(var(--teal-rgb), .05));
+}
+.event__day { font-size: 1.9rem; font-weight: 900; font-style: italic; line-height: 1; color: var(--mint); }
+.event__month { font-size: .62rem; font-weight: 700; letter-spacing: .24em; padding-left: .24em; margin-top: 5px; }
+.event__body { min-width: 0; display: flex; flex-direction: column; }
+.event__meta { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.event__meta span { display: inline-flex; align-items: center; gap: .4em; }
+.event__meta svg { width: 1.2em; height: 1.2em; }
+.event__game { color: var(--mint); }
+.event__soon { color: var(--black); background: var(--mint); padding: .15em .6em; border-radius: 4px; }
+.event h3 { margin-bottom: .45em; }
+.event p { color: var(--muted); font-size: .93rem; margin-bottom: 14px; }
+.event .btn { align-self: flex-start; margin-top: auto; }
+
+
+/* 12. HOW TO JOIN ========================================================== */
+.steps { display: grid; gap: 16px; }
+@media (min-width: 700px)  { .steps { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+@media (min-width: 1040px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+
+.step { position: relative; padding: 26px 22px 22px; }
+.step:hover { transform: translateY(-4px); }
+.step__num { display: block; font-weight: 900; font-style: italic; font-size: 3rem; line-height: 1; margin-bottom: 16px; color: transparent; -webkit-text-stroke: 1.2px var(--mint); text-shadow: 0 0 22px rgba(var(--mint-rgb), .25); }
+.step p { color: var(--muted); font-size: .94rem; }
+.step p:last-child { margin-bottom: 0; }
+
+/* Final call to action with the H mark fading behind it */
+.cta {
+  position: relative; overflow: hidden; isolation: isolate;
+  margin-top: 56px; padding: 64px 20px; text-align: center;
+  border-radius: var(--radius); border: 1px solid var(--line);
+  background: radial-gradient(ellipse at 50% 130%, rgba(var(--teal-rgb), .55), transparent 65%), var(--card);
+}
+.cta__ghost { position: absolute; z-index: -1; width: min(70%, 420px); height: auto; left: 50%; top: 50%; transform: translate(-50%, -50%); opacity: .06; }
+.cta .tagline { font-size: .7rem; margin-bottom: 1rem; padding-left: .28em; }
+.cta h3 { font-size: clamp(1.8rem, 7vw, 3rem); margin-bottom: .8em; }
+
+
+/* 13. FOOTER =============================================================== */
+.footer { border-top: 1px solid var(--line); padding: 44px 0; background: rgba(0, 0, 0, .4); }
+.footer__inner { display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; }
+@media (min-width: 820px) { .footer__inner { flex-direction: row; justify-content: space-between; text-align: left; } }
+.footer__brand { display: flex; align-items: center; gap: 14px; text-decoration: none !important; }
+.footer__brand img { height: 30px; width: auto; }
+.footer__brand .tagline { font-size: .62rem; }
+.footer__copy { margin: 0; font-size: .82rem; color: var(--muted); }
+
+.socials { display: flex; gap: 10px; }
+.socials a { display: grid; place-items: center; width: 42px; height: 42px; border-radius: var(--radius-sm); color: var(--mint); background: var(--card); border: 1px solid var(--line); transition: border-color .2s, box-shadow .25s, transform .2s; }
+.socials a:hover { border-color: var(--mint); box-shadow: var(--glow); transform: translateY(-2px); text-decoration: none; }
+.socials svg { width: 20px; height: 20px; }
+
+
+/* 14. REDUCED MOTION ======================================================= */
+/* Respect people who've asked their device for less animation. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .js .reveal { opacity: 1; transform: none; filter: none; }
+}

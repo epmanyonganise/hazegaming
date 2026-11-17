@@ -1,0 +1,33 @@
+# Netlify settings for hazegaming.co.zw
+# This is a plain static site: no build step, publish the folder as-is.
+
+[build]
+  publish = "."
+
+# Redirect the www version to the main domain
+[[redirects]]
+  from = "https://www.hazegaming.co.zw/*"
+  to = "https://hazegaming.co.zw/:splat"
+  status = 301
+  force = true
+
+# Basic security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+
+# Data files change often, so browsers always re-check them
+# (new members/events show up straight away after you deploy)
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Images can be cached for a week
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

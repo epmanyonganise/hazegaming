@@ -1,0 +1,12 @@
+{
+  "_help": "MEMBERS. To add someone, copy one { ... } block, paste it after the last one, and put a comma between blocks (but NOT after the last one). name = gamer tag WITHOUT 'HAZE' (the site adds it). role = Leader, Co-Leader, Captain, Member, Recruit... (Leader/Founder/Owner get a glowing card). game = main game. avatar = optional picture path like images/avatars/rxven.jpg, or leave empty to show their initial.",
+
+  "members": [
+    { "name": "Rxven",          "role": "Leader", "game": "Fortnite", "avatar": "" },
+    { "name": "Vxpr",           "role": "Member", "game": "Fortnite", "avatar": "" },
+    { "name": "Sxge",           "role": "Member", "game": "Fortnite", "avatar": "" },
+    { "name": "Shxmbz",         "role": "Member", "game": "Fortnite", "avatar": "" },
+    { "name": "Officxl Boss G", "role": "Member", "game": "Fortnite", "avatar": "" },
+    { "name": "Fxlcon",         "role": "Member", "game": "Fortnite", "avatar": "" }
+  ]
+}
